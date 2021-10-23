@@ -59,9 +59,21 @@ const pAequorFactory = (number, array) => {
         
       },
 
+      // Method to check for survivability
+      willLikelySurvive() {
+        let count = 0;
+        for (let j = 0; j < this.dna.length; j++) {
+          if (this.dna[j] === 'C' || this.dna[j] === 'G') {
+            count+= 1;
+          }
+        }
+        return count >= 9 ? true : false;
+      }
   }
 }
 
+const humanMade = ['C', 'C', 'C', 'C', 'C', 'C', 'G', 'G', 'G', 'C', 'T', 'A', 'A', 'T', 'A'];
+const test = pAequorFactory(3, humanMade)
 const newSpecies = pAequorFactory(1, mockUpStrand())
 let secondOne = pAequorFactory(2, mockUpStrand())
 // console.log(secondOne.dna)
@@ -70,7 +82,8 @@ let secondOne = pAequorFactory(2, mockUpStrand())
 // console.log(newSpecies.mutate());
 // console.log(newSpecies.mutate());
 newSpecies.compareDNA(secondOne)
-
+console.log(test.willLikelySurvive())
+console.log(newSpecies.willLikelySurvive())
 
 // const firstSpecies = pAequorFactory(1, mockUpStrand());
 // console.log(firstSpecies)
