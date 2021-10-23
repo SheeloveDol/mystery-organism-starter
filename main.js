@@ -16,8 +16,10 @@ const mockUpStrand = () => {
 // Creates new instances of objects
 const pAequorFactory = (number, array) => {
   return {
-    specipmen: number,
+    specimenNum: number,
     dna: array,
+    
+    // Mutates the DNA of created species
     mutate() {
       // Base DNA list
       const baseDNA = ['A', 'T', 'C', 'G'];
@@ -40,16 +42,34 @@ const pAequorFactory = (number, array) => {
       createdDNA.splice(rand, 1, leftOverDNA[randomBase]);
       return createdDNA
       
-    }
+    },
+
+    // Method to compare different created species
+    compareDNA(pAequor) {
+      let counter = 0;
+    
+      for (let i = 0; i < this.dna.length; i++) {
+        if (this.dna[i] === pAequor.dna[i]) {
+          counter+= 1;
+        }
+
+      }
+      let percentage = Math.floor((counter / 15) * 100);
+      console.log(`Specimen #${this.specimenNum} and specimen #${pAequor.specimenNum} have ${percentage}% DNA in common`)
+        
+      },
+
   }
 }
 
 const newSpecies = pAequorFactory(1, mockUpStrand())
-console.log(' ')
-console.log(newSpecies.dna)
-console.log(newSpecies.mutate());
-console.log(newSpecies.mutate());
-
+let secondOne = pAequorFactory(2, mockUpStrand())
+// console.log(secondOne.dna)
+// // console.log(' ')
+// console.log(newSpecies.dna)
+// console.log(newSpecies.mutate());
+// console.log(newSpecies.mutate());
+newSpecies.compareDNA(secondOne)
 
 
 // const firstSpecies = pAequorFactory(1, mockUpStrand());
@@ -73,5 +93,3 @@ console.log(newSpecies.mutate());
 
 7. replace 
 */
-
-
